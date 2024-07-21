@@ -1,0 +1,25 @@
+{
+  "name": "movieflix-api",
+  "version": "1.0.0",
+  "description": "fullstack project using node, express, typescript, prisma, react ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsx watch src/server.ts"
+  },
+  "type": "module",
+  "keywords": [
+    "tailwind",
+    "react",
+    "portfolio",
+    "nodejs",
+    "express",
+    "prisma"
+  ],
+  "author": "Felipe Santiago Morais",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.14.11",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}
