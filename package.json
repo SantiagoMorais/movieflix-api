@@ -8,8 +8,6 @@
   },
   "type": "module",
   "keywords": [
-    "tailwind",
-    "react",
     "portfolio",
     "nodejs",
     "express",
@@ -30,6 +28,7 @@
     "typescript-eslint": "^7.17.0"
   },
   "dependencies": {
+    "@prisma/client": "^5.17.0",
     "express": "^4.19.2"
   }
 }
