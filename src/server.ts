@@ -53,6 +53,37 @@ app.post("/movies", async (req, res) => {
     }
 });
 
+app.put("/movies/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const data = { ...req.body };
+    data.release_date = data.release_date ? new Date(data.release_date) : undefined;
+    /* eslint-disable */
+    console.log(data);
+    /* eslint-enable */
+
+    const movie = await prisma.movie.findUnique({
+        where: {
+            id,
+        },
+    });
+
+    try {
+        if (!movie) {
+            return res.status(404).send({ message: `ID '${id}' doesn't exist. Please select a valid ID.` });
+        }
+
+        await prisma.movie.update({
+            where: {
+                id,
+            },
+            data,
+        });
+        res.status(200).send();
+    } catch (error) {
+        res.status(500).json({ message: "It was not possible to update the movie register" });
+    };
+});
+
 app.listen(port, () => {
     /* eslint-disable */
     console.log(`Server running on http://localhost:${port}`);
