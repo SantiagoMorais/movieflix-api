@@ -24,6 +24,20 @@ app.post("/movies", async (req, res) => {
     const { title, genre_id, language_id, oscar_count, release_date } = req.body;
 
     try {
+
+        const duplicatedTitle = await prisma.movie.findFirst({
+            where: {
+                title: {
+                    equals: title,
+                    mode: "insensitive",
+                },
+            },
+        });
+
+        if (duplicatedTitle) {
+            res.status(409).send({ message: "There is already a movie with this title registered" });
+        }
+
         await prisma.movie.create({
             data: {
                 title,
@@ -35,7 +49,7 @@ app.post("/movies", async (req, res) => {
         });
         res.status(201).send();
     } catch (error) {
-        res.status(500).send({message: "Error to create a new movie register"});
+        res.status(500).send({ message: "Error to create a new movie register" });
     }
 });
 
