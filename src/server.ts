@@ -84,6 +84,27 @@ app.put("/movies/:id", async (req, res) => {
     };
 });
 
+app.delete("/movies/:id", async (req, res) => {
+    const id = Number(req.params.id);
+    const movie = await prisma.movie.findUnique({ where: { id } });
+
+    try {
+        if (!movie) {
+            res.status(404).send({ message: `ID '${id}' doesn't exist. Please, select a valid ID` });
+        }
+
+        await prisma.movie.delete({
+            where: {
+                id,
+            },
+        });
+
+        res.status(200).send({ message: "Movie deleted sucessfully" });
+    } catch (error) {
+        res.status(500).json({ message: "It was not possible to delete the movie register" });
+    }
+});
+
 app.listen(port, () => {
     /* eslint-disable */
     console.log(`Server running on http://localhost:${port}`);
