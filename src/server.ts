@@ -60,9 +60,6 @@ app.put("/movies/:id", async (req, res) => {
     const id = Number(req.params.id);
     const data = { ...req.body };
     data.release_date = data.release_date ? new Date(data.release_date) : undefined;
-    /* eslint-disable */
-    console.log(data);
-    /* eslint-enable */
 
     const movie = await prisma.movie.findUnique({
         where: {
@@ -81,7 +78,7 @@ app.put("/movies/:id", async (req, res) => {
             },
             data,
         });
-        res.status(200).send();
+        res.status(200).send({message: "movie updated sucessfully"});
     } catch (error) {
         res.status(500).json({ message: "It was not possible to update the movie register" });
     };

@@ -8,7 +8,9 @@
     "paths": {
         "/movies": {
             "get": {
-                "tags": ["Movie"],
+                "tags": [
+                    "Movie"
+                ],
                 "summary": "To get all the movies",
                 "responses": {
                     "200": {
@@ -23,6 +25,73 @@
                                 }
                             }
                         }
+                    }
+                }
+            }
+        },
+        "/movies/{id}": {
+            "put": {
+                "tags": [
+                    "Movie"
+                ],
+                "summary": "To update a movie data",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the movie that will be updated",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/MovieInput"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Movie updated sucessfully"
+                    },
+                    "404": {
+                        "description": "Movie doesn't found"
+                    },
+                    "500": {
+                        "description": "It was not possible to update the movie register"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Movie"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "ID of the movie that will be deleted",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Movie deleted sucessfully"
+                    },
+                    "404": {
+                        "description": "Movie doesn't found"
+                    },
+                    "500": {
+                        "description": "It was not possible to delete the movie"
                     }
                 }
             }
@@ -74,6 +143,39 @@
                                 "description": "Language name"
                             }
                         }
+                    },
+                    "oscar_count": {
+                        "type": "integer",
+                        "description": "How many Oscars the movie received"
+                    },
+                    "release_date": {
+                        "type": "string",
+                        "format": "date",
+                        "description": "Movie release date"
+                    }
+                }
+            },
+            "MovieInput": {
+                "type": "object",
+                "required": [
+                    "title",
+                    "genre_id",
+                    "language_id",
+                    "oscar_count",
+                    "release_date"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "description": "Movie title"
+                    },
+                    "genre_id": {
+                        "type": "integer",
+                        "description": "Movie ID"
+                    },
+                    "language_id": {
+                        "type": "integer",
+                        "description": "Movie language"
                     },
                     "oscar_count": {
                         "type": "integer",
