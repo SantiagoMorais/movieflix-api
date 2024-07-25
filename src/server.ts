@@ -105,6 +105,44 @@ app.delete("/movies/:id", async (req, res) => {
     }
 });
 
+app.get("/movies/:genreName", async (req, res) => {
+    const genreName = req.params.genreName;
+
+    try {
+        const validGender = await prisma.genre.findFirst({
+            where: {
+                name: {
+                    mode: "insensitive",
+                    equals: genreName,
+                },
+            },
+        });
+
+        if (!validGender) {
+            return res.status(404).send({ message: `The gender '${genreName}' doesn't exist.` });
+        }
+
+        const moviesFilteredByGenreName = await prisma.movie.findMany({
+            include: {
+                genres: true,
+                languages: true,
+            },
+            where: {
+                genres: {
+                    name: {
+                        mode: "insensitive",
+                        equals: genreName,
+                    },
+                },
+            },
+        });
+
+        res.status(200).json({ movies: moviesFilteredByGenreName, numberOfMovies: moviesFilteredByGenreName.length });
+    } catch (error) {
+        res.status(500).send({ message: "It was not possible to show the list of genders" });
+    }
+});
+
 app.listen(port, () => {
     /* eslint-disable */
     console.log(`Server running on http://localhost:${port}`);
