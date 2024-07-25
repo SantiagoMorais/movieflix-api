@@ -109,7 +109,7 @@ app.get("/movies/:genreName", async (req, res) => {
     const genreName = req.params.genreName;
 
     try {
-        const validGender = await prisma.genre.findFirst({
+        const validGenre = await prisma.genre.findFirst({
             where: {
                 name: {
                     mode: "insensitive",
@@ -118,8 +118,8 @@ app.get("/movies/:genreName", async (req, res) => {
             },
         });
 
-        if (!validGender) {
-            return res.status(404).send({ message: `The gender '${genreName}' doesn't exist.` });
+        if (!validGenre) {
+            return res.status(404).send({ message: `The genre '${genreName}' doesn't exist.` });
         }
 
         const moviesFilteredByGenreName = await prisma.movie.findMany({
@@ -139,7 +139,7 @@ app.get("/movies/:genreName", async (req, res) => {
 
         res.status(200).json({ movies: moviesFilteredByGenreName, numberOfMovies: moviesFilteredByGenreName.length });
     } catch (error) {
-        res.status(500).send({ message: "It was not possible to show the movies list filtered by gender" });
+        res.status(500).send({ message: "It was not possible to show the movies list filtered by genre" });
     }
 });
 

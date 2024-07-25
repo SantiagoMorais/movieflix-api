@@ -72,6 +72,7 @@
                 "tags": [
                     "Movie"
                 ],
+                "summary": "To delete a movide from the data base",
                 "parameters": [
                     {
                         "name": "id",
@@ -101,13 +102,13 @@
                 "tags": [
                     "Movie"
                 ],
-                "summary": "To filter movies by gender",
+                "summary": "To filter movies by genre",
                 "parameters": [
                     {
                         "name": "genreName",
                         "in": "path",
                         "required": true,
-                        "description": "Movie gender name",
+                        "description": "Movie genre name",
                         "schema": {
                             "type": "string"
                         }
@@ -127,7 +128,7 @@
                         }
                     },
                     "500": {
-                        "description": "It was not possible to show the movies list filtered by gender"
+                        "description": "It was not possible to show the movies list filtered by genre"
                     }
                 }
             }
