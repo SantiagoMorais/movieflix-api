@@ -139,7 +139,7 @@ app.get("/movies/:genreName", async (req, res) => {
 
         res.status(200).json({ movies: moviesFilteredByGenreName, numberOfMovies: moviesFilteredByGenreName.length });
     } catch (error) {
-        res.status(500).send({ message: "It was not possible to show the list of genders" });
+        res.status(500).send({ message: "It was not possible to show the movies list filtered by gender" });
     }
 });
 
