@@ -2,7 +2,7 @@
 
 🧾✍ This is a project using Node.JS | TypeScript | Express.JS | Prisma
 
-![Movieflix API docs on Swagger](/src/images/banner.png)
+![Movieflix API docs on Swagger](/src/assets/imgs/banner.png)
 
 ## Sumary
 
@@ -71,7 +71,7 @@ Using Thunder Client, this is returned:
 
 Please, ignore the data, they were randonly choosed.
 
-![Movies list returned by the get method using thunder client](/src/images/movies-list.png)
+![Movies list returned by the get method using thunder client](/src/assets/imgs/movies-list.png)
 
 ### Create Movie (POST)
 
@@ -155,7 +155,7 @@ app.put("/movies/:id", async (req, res) => {
 
 Using Thunder Client, this is returned:
 
-![Server response by updating a movie data](/src/images/update-movie-data.png)
+![Server response by updating a movie data](/src/assets/imgs/update-movie-data.png)
 
 ### Delete Movie (DELETE)
 
@@ -235,7 +235,7 @@ app.get("/movies/:genreName", async (req, res) => {
 
 Using Thunder Client, this is returned:
 
-![Movies filtered by gender](/src/images/movies-filtered-by-gender.png)
+![Movies filtered by gender](/src/assets/imgs/movies-filtered-by-gender.png)
 
 ## How to run the application
 
@@ -245,7 +245,7 @@ To visualize the docs by Swagger is necessary to run the server with the script 
 
 To access the docs you can access the route "http://localhost:3000/docs". The host 3000 is used by default and it is used in this application, but, if you change it, you can access the documentation anyway, just adjust the local host from your URL. You can see the interface like that:
 
-![Movieflix API docs on Swagger](/src/images/banner.png)
+![Movieflix API docs on Swagger](/src/assets/imgs/banner.png)
 
 ## What I Learned
 
